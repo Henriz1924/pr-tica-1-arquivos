@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    char nome[50];
+    float preco;
+} Fruta;
+
+int main() {
+    Fruta fruta;
+    FILE *arquivo;
+    char continuar;
+
+    // Abre o arquivo para adicionar novas frutas
+    arquivo = fopen("frutas.txt", "a");
+
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo!\n");
+        return 1;
+    }
+
+    do {
+        printf("\n=== CADASTRO DE FRUTA ===\n");
+
+        printf("Nome da fruta: ");
+        fgets(fruta.nome, sizeof(fruta.nome), stdin);
+
+        fruta.nome[strcspn(fruta.nome, "\n")] = '\0';
+
+        printf("Preco da fruta: R$ ");
+        scanf("%f", &fruta.preco);
+
+
+        getchar();
+
+        fprintf(arquivo, "%s,%.2f\n", fruta.nome, fruta.preco);
+
+        printf("Fruta cadastrada com sucesso!\n");
+
+        printf("\nDeseja cadastrar outra fruta? (s/n): ");
+        scanf("%c", &continuar);
+
+        getchar();
+
+    } while (continuar == 's' || continuar == 'S');
+
+    printf("\nEncerrando o programa...\n");
+    printf("Arquivo fechado com sucesso!\n");
+
+    fclose(arquivo);
+
+    return 0;
+}
