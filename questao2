@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct aluno{
+    char aluno[100];
+    float nota;
+}Aluno;
+
+int main(){
+    int n;
+    Aluno a;
+
+    printf("Digite a quantidade de alunos: ");
+    scanf("%d", &n);
+
+    FILE * arq = fopen("arquivo.txt", "w");
+    if(arq==NULL)(exit(1));
+
+    for(int i = 0; i < n; i++){
+    printf("Digite seu nome: ");
+    scanf(" %[^\n]", a.aluno);
+
+    printf("Digite sua nota: ");
+    scanf("%f", &a.nota);
+
+    fprintf(arq, "%s\n%2.f\n", a.aluno, a.nota);
+    }
+
+    fclose(arq);
+    return 0;
+}
