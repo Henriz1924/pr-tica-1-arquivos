@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct funcionario{
+    int id;
+    char nome[100];
+    float salario;
+}Funcionario;
+
+int main(){
+    FILE * arq;
+    Funcionario func;
+
+    printf("Digite seu nome: ");
+    scanf(" %[^\n]", func.nome);
+
+    printf("Digite seu id: ");
+    scanf("%d", &func.id);
+
+    printf("Digite seu salario: ");
+    scanf("%f", &func.salario);
+
+    arq = fopen("funcionarios.txt", "w");
+    if(arq==NULL){
+        printf("Não é possível criar o arquivo.");
+        exit(1);
+    }
+    else{
+        printf("Arquivo criado!\n");
+    }
+
+    fprintf(arq, "%s\n%d\n%f", func.nome, func.id, func.salario);
+    fclose(arq);
+
+    return 0;
+}
